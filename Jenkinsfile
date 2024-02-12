@@ -1,13 +1,14 @@
 pipeline {
     agent any
     
+    }
+
     stages {
-        stage("Checkout") {
+        stage('SCM Checkout') {
             steps {
-                // Checkout the code from the Git repository
-                git branch: '$GIT_BRANCH', url: 'https://github.com/mendhe1020/node-todo-cicd.git'
+                echo 'Hello World'
+                git 'https://github.com/mendhe1020/node-todo-cicd.git%20%20used%20this%20repo' 
             }
         }
-    
     }
 }
