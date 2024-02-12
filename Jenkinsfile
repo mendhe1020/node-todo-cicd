@@ -2,30 +2,31 @@ pipeline {
     agent any
     
     stages {
-        stage("Code") {
+        stage("Checkout") {
             steps {
-                // Declarative syntax for checking out code from SCM
-                checkout([$class: 'GitSCM', 
-                          branches: [[name: '$GIT_BRANCH']], 
-                          userRemoteConfigs: [[url: 'https://github.com/mendhe1020/node-todo-cicd.git']]])
+                // Checkout the code from the Git repository
+                git branch: '$GIT_BRANCH', url: 'https://github.com/mendhe1020/node-todo-cicd.git'
             }
         }
+        
         stage("Build") {
             steps {
-                // Example: Building a Node.js project
-                sh 'npm install'
+                // Build your project
+                sh 'npm install' // Assuming it's a Node.js project
             }
         }
+        
         stage("Test") {
             steps {
-                // Example: Running tests for a Node.js project
-                sh 'npm test'
+                // Run tests for your project
+                sh 'npm test' // Assuming you have tests to run
             }
         }
+        
         stage("Deploy") {
             steps {
-                // Example: Deploying a Node.js project
-                sh 'npm run deploy'
+                // Deploy your project
+                sh 'npm run deploy' // Assuming you have a deployment script
             }
         }
     }
